@@ -1,0 +1,144 @@
+<div class="register-dialog">
+    <h2>Registrierung abschließen</h2>
+    <mat-horizontal-stepper [linear]=isLinear #stepper>
+        <mat-step [stepControl]="addressFormGroup">
+            <ng-template matStepLabel>Persönliche Daten</ng-template>
+            <form [formGroup]="addressFormGroup">
+                <h4 class="primary">Anschrift</h4>
+                <div fxLayout="row">
+                    <mat-form-field fxFlex="100">
+                        <input matInput placeholder="Firma" formControlName="company" name="company" required>
+                    </mat-form-field>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="space-between center">
+                    <mat-form-field fxFlex="45">
+                        <input matInput placeholder="Vorname" formControlName="firstName" name="firstName"
+                            required>
+                    </mat-form-field>
+                    <mat-form-field fxFlex="45">
+                        <input matInput placeholder="Nachname" formControlName="lastName" name="lastName"
+                            required>
+                    </mat-form-field>
+                </div>
+                <div fxLayout="row">
+                    <mat-form-field fxFlex="100">
+                        <input matInput placeholder="Straße und Nr." formControlName="address" name="address" required>
+                    </mat-form-field>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="space-between center">
+                    <mat-form-field fxFlex="45">
+                        <input matInput placeholder="PLZ" formControlName="zipCode" name="zipCode" required>
+                    </mat-form-field>
+                    <mat-form-field fxFlex="45">
+                        <input matInput placeholder="Stadt" formControlName="city" name="city" required>
+                    </mat-form-field>
+                </div>
+            </form>
+            <div>
+              <button mat-button matStepperNext>Weiter</button>
+            </div>
+        </mat-step>
+        <mat-step [stepControl]="addFormGroup">
+            <ng-template matStepLabel>Anlage hinzufügen</ng-template>
+            <form [formGroup]="addFormGroup" fxLayout="column" class="add-form">
+                <h4 class="primary">Anlage</h4>
+                <div fxLayout="row" fxLayoutAlign="space-between center">
+                    <mat-form-field fxFlex="100">
+                        <input matInput placeholder="Beschreibung" formControlName="name" name="name" required>
+                    </mat-form-field>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="space-between center">
+                    <mat-form-field fxFlex="100">
+                        <input matInput placeholder="Standort" formControlName="location" name="location" required>
+                    </mat-form-field>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="space-between center">
+                    <mat-form-field fxFlex="100">
+                        <input matInput placeholder="Serien-Nr." formControlName="inumber" name="inumber" required>
+                    </mat-form-field>
+                </div>
+            </form>
+            <div>
+              <button mat-button matStepperPrevious>Zurück</button>
+              <button mat-button matStepperNext>Weiter</button>
+            </div>
+        </mat-step>
+        <mat-step>
+              <ng-template matStepLabel>Wartungsvertrag</ng-template>
+                <div fxLayout="row" fxLayoutAlign="space-between center">
+                    <mat-radio-group required [(ngModel)]="contract">
+                    <div class="card" fxFlex="30">
+                            <mat-radio-button color="primary" value="standart"><h3>Standart</h3></mat-radio-button>
+
+                            <p>Reperatur innerhalb von 2 Werktagen</p>
+                            <h4 class="primary">19€/Monat</h4>
+
+                    </div>
+                    <div class="card" fxFlex="30">
+                            <mat-radio-button color="primary" value="silber"><h3>Silber</h3></mat-radio-button>
+                            <p>24/7 Support</p>
+                            <p>Reperatur innerhalb eines Werktages</p>
+                            <h4 class="primary">29€/Monat</h4>
+
+                    </div>
+                    <div class="card" fxFlex="30">
+                            <mat-radio-button color="primary" value="gold"><h3>Gold</h3></mat-radio-button>
+                            <p>24/7 Support</p>
+                            <p>
+                                Automatische Beauftragung der Reperatur
+                            </p>
+                            <p>Reperatur innerhalb von 4 Stunden</p>
+                            <h4 class="primary">49€/Monat</h4>
+
+                    </div>
+                </mat-radio-group>
+
+                </div>
+              <div>
+                <button mat-button matStepperPrevious>Zurück</button>
+                <button mat-button matStepperNext>Weiter</button>
+              </div>
+          </mat-step>
+          <mat-step [stepControl]="paymentFormGroup">
+            <ng-template matStepLabel>Zahlungsinformationen</ng-template>
+            <form [formGroup]="paymentFormGroup" fxLayout="column">
+                <h4 class="primary">Kreditkarte</h4>
+                <div fxLayout="row" fxLayoutAlign="space-between center">
+                    <mat-form-field fxFlex="100">
+                        <input matInput placeholder="Karteninhaber" formControlName="cowner" name="cowner"
+                            required>
+                    </mat-form-field>
+                </div>
+              <div fxLayout="row" fxLayoutAlign="space-between center">
+                  <mat-form-field fxFlex="70">
+                      <input matInput placeholder="Kartennummer" formControlName="cnumber" name="cnumber">
+                  </mat-form-field>
+                  <mat-form-field fxFlex="20">
+                      <input matInput placeholder="CVV" formControlName="ccv" name="ccv">
+                  </mat-form-field>
+              </div>
+              <div fxLayout="row" fxLayoutAlign="space-between center">
+                  <mat-form-field fxFlex="45">
+                      <input matInput placeholder="Ablaufmonat" formControlName="emonth" name="emonth">
+                  </mat-form-field>
+                  <mat-form-field fxFlex="45">
+                      <input matInput placeholder="Ablaufjahr" formControlName="eyear" name="eyear">
+                  </mat-form-field>
+              </div>
+          </form>
+            <div>
+              <button mat-button matStepperPrevious>Zurück</button>
+              <button mat-button matStepperNext>Weiter</button>
+            </div>
+        </mat-step>
+        <mat-step>
+ 
+          <ng-template matStepLabel>Fertig</ng-template>
+          <p>Die Registrierung ist nun abgeschlossen.</p>
+          <div>
+            <button mat-button matStepperPrevious>Zurück</button>
+            <button mat-button (click)="onSubmit()">Schließen</button>
+          </div>
+        </mat-step>
+      </mat-horizontal-stepper>
+</div>

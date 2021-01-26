@@ -1,0 +1,200 @@
+<div *ngIf="isLoading">
+  <mat-progress-bar mode="indeterminate" color="primary"> </mat-progress-bar>
+</div>
+<div *ngIf="!isLoading">
+  <div
+    *ngIf="emptyData"
+    class="empty-data"
+    fxLayout="column"
+    fxLayoutAlign="center center"
+  >
+    <img src="../assets/searchdata.png" alt="..." />
+    <h2>Keine Daten gefunden.</h2>
+    <p class="secondary">
+      Damit Daten angezeigt werden können, müssen weitere Informationen
+      hinzugefügt werden
+    </p>
+    <button mat-button color="primary" routerLink="/add">
+      Jetzt Anlage hinzufügen
+    </button>
+  </div>
+  <div class="content-wrapper">
+    <mat-tab-group *ngIf="!emptyData">
+      <mat-tab label="Gesamt">
+        <div fxLayout="row wrap" fxLayoutAlign="center center">
+          <div
+            class="card-wrapper"
+            fxFlex="25"
+            *ngFor="let smallCard of smallCards"
+          >
+            <mat-card class="card key-figures" [matMenuTriggerFor]="menu">
+              <mat-card-content
+                fxLayout="row"
+                fxLayoutAlign="space-between center"
+              >
+                <div fxLayout="column">
+                  <h2>{{ smallCard.value }}</h2>
+                  <span>{{ smallCard.name }}</span>
+                </div>
+                <button mat-button>
+                  <mat-icon> {{ smallCard.icon }}</mat-icon>
+                </button>
+              </mat-card-content>
+              <mat-menu #menu="matMenu">
+                <div class="key-figures-menu">
+                  <div *ngIf="smallCard.name == 'Kosten'">
+                    <h3>Letzte Kosten</h3>
+                    <p>Lorem ipsum dolor sit amet, consetetur sadipscing</p>
+                  </div>
+                  <div *ngIf="smallCard.name == 'Verbrauch'">
+                    <h3>Letzter Verbrauch</h3>
+                    <p>Lorem ipsum dolor sit amet, consetetur sadipscing</p>
+                    <p>Lorem ipsum dolor sit amet, consetetur sadipscing</p>
+                  </div>
+                  <div *ngIf="smallCard.name == 'Störungen'">
+                    <h3>Letzte Störungen</h3>
+                    <p>Sonntag, 13.12.19 13:23 <br />Pumpe defekt</p>
+                    <p>Montag, 01.11.19 07:53 <br />Düse defekt</p>
+                  </div>
+                  <div *ngIf="smallCard.name == 'Leckage'">
+                    <h3>Letzte Leckage</h3>
+                    <p>Kein Eintrag gefunden.</p>
+                  </div>
+                </div>
+              </mat-menu>
+            </mat-card>
+          </div>
+        </div>
+        <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column">
+          <div class="card-table-wrapper" fxFlex="50">
+            <h3 class="secondary">Wasserverbrauch</h3>
+            <mat-card class="card card-table">
+              <mat-card-content>
+                <div>
+                  <canvas
+                    baseChart
+                    [datasets]="barChartData"
+                    [labels]="barChartLabels"
+                    [options]="barChartOptions"
+                    [colors]="barChartColors"
+                    [legend]="barChartLegend"
+                    [chartType]="barChartType"
+                  >
+                  </canvas>
+                </div>
+              </mat-card-content>
+            </mat-card>
+          </div>
+          <div class="card-table-wrapper" fxFlex="50">
+            <h3 class="secondary">Gesamtkosten</h3>
+            <mat-card class="card">
+              <mat-card-content>
+                <div>
+                  <canvas
+                    baseChart
+                    [datasets]="lineChartData"
+                    [labels]="lineChartLabels"
+                    [options]="lineChartOptions"
+                    [colors]="lineChartColors"
+                    [legend]="lineChartLegend"
+                    [chartType]="lineChartType"
+                  >
+                  </canvas>
+                </div>
+              </mat-card-content>
+            </mat-card>
+          </div>
+        </div>
+        <button
+          class="generate-btn"
+          mat-button
+          color="primary"
+          (click)="generateData()"
+        >
+          Beispieldaten generieren
+        </button>
+      </mat-tab>
+      <mat-tab *ngFor="let system of systems" label="{{ system.name }}">
+        <div fxLayout="row" fxLayoutAlign="center " fxLayout.xs="column">
+          <div
+            class="card-table-wrapper"
+            fxFlex="50"
+            *ngIf="system.inumber == 12345 || system.inumber == 12344"
+          >
+            <div fxLayoutAlign="center center" fxLayout="column">
+              <img
+                *ngIf="system.inumber == 12345"
+                class="product-img"
+                src="../../../assets/ovale.png"
+              />
+              <img
+                *ngIf="system.inumber == 12344"
+                class="product-img"
+                src="../../../assets/rund.png"
+              />
+            </div>
+          </div>
+          <div class="card-table-wrapper" fxFlex="50">
+            <h3 class="secondary">Informationen</h3>
+            <div class="information-text">
+              <p>Hinzugefügt am: {{ system.date | date: "dd.MM.yyyy" }}</p>
+              <p *ngIf="system.status == 'okay'" fxLayoutAlign=" center">
+                Status: <mat-icon class="status-okay">check_circle</mat-icon>
+              </p>
+              <p *ngIf="system.status == 'warning'" fxLayoutAlign=" center">
+                Status: <mat-icon class="status-warning">warning</mat-icon>
+              </p>
+              <p *ngIf="system.status == 'error'" fxLayoutAlign=" center">
+                Status: <mat-icon class="status-error">error</mat-icon>
+              </p>
+            </div>
+            <h3 class="secondary">Optionen</h3>
+            <button color="primary" mat-button (click)="startCleaning()">
+              Reinigung starten
+            </button>
+          </div>
+        </div>
+        <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column">
+          <div class="card-table-wrapper" fxFlex="50">
+            <h3 class="secondary">Fettschicht Füllstand</h3>
+            <mat-card class="card card-table">
+              <mat-card-content>
+                <div>
+                  <canvas
+                    baseChart
+                    [datasets]="barChartDataFuell"
+                    [labels]="barChartLabels"
+                    [options]="barChartOptions"
+                    [colors]="barChartColors"
+                    [legend]="barChartLegend"
+                    [chartType]="barChartType"
+                  >
+                  </canvas>
+                </div>
+              </mat-card-content>
+            </mat-card>
+          </div>
+          <div class="card-table-wrapper" fxFlex="50">
+            <h3 class="secondary">Temperatur</h3>
+            <mat-card class="card">
+              <mat-card-content>
+                <div>
+                  <canvas
+                    baseChart
+                    [datasets]="lineChartDataTemp"
+                    [labels]="lineChartLabels"
+                    [options]="lineChartOptions"
+                    [colors]="lineChartColors"
+                    [legend]="lineChartLegend"
+                    [chartType]="lineChartType"
+                  >
+                  </canvas>
+                </div>
+              </mat-card-content>
+            </mat-card>
+          </div>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</div>

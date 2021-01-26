@@ -1,0 +1,24 @@
+<div class="full-height full-width">
+    <mat-sidenav-container class="full-height">
+        <mat-sidenav opened #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
+            [fixedInViewport]="mobileQuery.matches">
+            <app-sidebar></app-sidebar>
+        </mat-sidenav>
+        <mat-sidenav-content class="bg-grey">
+            <div fxLayout="row" fxLayoutAlign="none center">
+                <button mat-icon-button (click)="snav.toggle()">
+                    <mat-icon>menu</mat-icon>
+                </button>
+                <app-navbar class="full-width"></app-navbar>
+            </div>
+            <div fxLayoutAlign="center none">
+                <div class="wrapper">
+                    <router-outlet></router-outlet>
+                </div>
+            </div>
+            <div class="full-width" fxLayoutAlign="center none">
+                <app-footer></app-footer>
+            </div>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+</div>

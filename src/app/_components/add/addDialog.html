@@ -1,0 +1,21 @@
+<h1 mat-dialog-title>Anlage hinzufügen</h1>
+<div mat-dialog-content>
+    <form [formGroup]="addForm" (ngSubmit)="onSubmit()" fxLayout="column" class="add-form">
+        <div fxLayout="row" fxLayoutAlign="space-between center">
+            <mat-form-field fxFlex="100">
+                <input matInput placeholder="Beschreibung" formControlName="name" name="name" required>
+            </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-between center">
+            <mat-form-field fxFlex="100">
+                <input matInput placeholder="Standort" formControlName="location" name="location" required>
+            </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-between center">
+            <mat-form-field fxFlex="100">
+                <input matInput placeholder="Serien-Nr." formControlName="inumber" name="inumber" required>
+            </mat-form-field>
+        </div>
+        <button type="submit" color="primary" mat-button>Hinzufügen</button>
+    </form>
+</div>

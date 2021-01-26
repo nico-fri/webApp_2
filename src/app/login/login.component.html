@@ -1,0 +1,64 @@
+<div class="full-height">
+  <div
+    class="login-left bg-white"
+    fxFlex="40"
+    fxFlex.xs="100"
+    fxFlex.sm="100"
+    fxLayoutAlign="center center"
+    fxLayout="column"
+    md
+    sm
+  >
+    <img class="login-logo" src="../assets/logo.svg" alt="..." />
+
+    <form
+      [formGroup]="loginForm"
+      (ngSubmit)="onSubmit()"
+      class="login-form"
+      fxLayout="column"
+    >
+      <h2 class="font-weight-bold">Anmelden</h2>
+      <mat-form-field>
+        <input matInput placeholder="E-Mail Adresse" formControlName="email" />
+      </mat-form-field>
+      <mat-form-field>
+        <input
+          matInput
+          placeholder="Passwort eingeben"
+          formControlName="password"
+          [type]="hide ? 'password' : 'text'"
+        />
+        <button
+          mat-icon-button
+          matSuffix
+          (click)="hide = !hide"
+          [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hide"
+        >
+          <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+        </button>
+      </mat-form-field>
+      <button type="submit" color="primary" mat-flat-button>Anmelden</button>
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <p class="secondary">Noch nicht registriert?</p>
+        <a class="secondary" routerLink="/register">Registrieren </a>
+      </div>
+    </form>
+  </div>
+  <div
+    class="login-info"
+    fxFlex="60"
+    fxHide.sm
+    fxHide.xs
+    fxLayoutAlign=" start"
+    fxLayout="column"
+  >
+    <div>
+      <img src="../../assets/jumbo.png" alt="..." />
+    </div>
+    <div class="text" fxLayout="column" fxLayoutAlign="center start">
+      <h1 class="aco-cluster aco-cluster-one">SBP. Creating</h1>
+      <h1 class="aco-cluster aco-cluster-two">the future of monitoring</h1>
+    </div>
+  </div>
+</div>

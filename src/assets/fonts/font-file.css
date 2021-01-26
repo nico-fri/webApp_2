@@ -1,0 +1,15 @@
+@font-face {
+  font-family: "Stone Sans II Bold";
+  src: url("./StoneSansIIITCW05-Bold-046c993bbabcc5941f49534386a0409b.woff2")
+    format("woff2");
+}
+@font-face {
+  font-family: "Stone Sans II Book";
+  src: url("./StoneSansIIITCW05-Book-0905c148d609aae2e1fabdfab67797fc.woff2")
+    format("woff2");
+}
+@font-face {
+  font-family: "Stone Sans II Medium";
+  src: url("./StoneSansIIITCW05-Medium-e65ea93f8d3894b5986696f38ca9ffcb.woff2")
+    format("woff2");
+}

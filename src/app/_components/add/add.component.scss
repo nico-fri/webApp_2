@@ -1,0 +1,39 @@
+@import "variables";
+
+.content-wrapper {
+  margin: 1rem 1rem 0 1rem;
+}
+
+.card-wrapper {
+  margin: 1rem 1rem 0 0;
+}
+
+.card {
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+  transition: 0.3s;
+}
+
+.card-content {
+  height: 60%;
+}
+
+.add-card:hover {
+  transform: translateY(-2px);
+  color: $primary;
+}
+
+.add-form {
+  width: 400px;
+}
+
+.generate-info {
+  padding: 0 2rem;
+}
+
+.mat-card-title {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  max-width: 150px;
+}

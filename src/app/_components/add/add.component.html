@@ -1,0 +1,66 @@
+<div class="content-wrapper" fxLayout="column">
+  <div fxLayout="row wrap">
+    <div class="card-wrapper">
+      <mat-card class="card add-card">
+        <mat-card-header>
+          <mat-card-title>Anlage hinzufügen</mat-card-title>
+        </mat-card-header>
+        <mat-card-content fxLayoutAlign="center center" class="card-content">
+          <button mat-icon-button (click)="openAddDialog()">
+            <mat-icon class="add-icon">add</mat-icon>
+          </button>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div *ngFor="let system of systems" class="card-wrapper">
+      <mat-card class="card">
+        <mat-card-header fxLayoutAlign="space-between center">
+          <mat-card-title>{{ system.name }}</mat-card-title>
+          <mat-card-subtitle>Anlage</mat-card-subtitle>
+
+          <mat-menu #sensorMenu="matMenu">
+            <button mat-menu-item (click)="deleteSystem(system.id)">
+              <mat-icon>delete</mat-icon>Löschen
+            </button>
+          </mat-menu>
+          <button mat-icon-button [matMenuTriggerFor]="sensorMenu">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+        </mat-card-header>
+        <mat-card-content
+          class="card-content"
+          fxLayout="column"
+          fxLayoutAlign="center center"
+        >
+          <mat-icon class="sensor-icon">settings_input_component</mat-icon>
+          <p>Serien-Nr: {{ system.inumber }}</p>
+          <p>Standort: {{ system.location }}</p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+  <div fxAlign="row">
+    <mat-menu #generateMenu="matMenu">
+      <div
+        fxLayoutAlign="center center"
+        fxLayout="column"
+        class="generate-info"
+      >
+        <h3>Hinweis</h3>
+        <p class="secondary">
+          Folgende Serien-Nr. in der Datenbank mit Bildern hinterlegt:
+          <br /><br />12345 = ACO LipuJet Oval <br />12344 = ACO LipuJet Rund
+        </p>
+      </div>
+    </mat-menu>
+
+    <button
+      class="generate-btn"
+      mat-button
+      color="primary"
+      [matMenuTriggerFor]="generateMenu"
+    >
+      Informationen anzeigen
+    </button>
+  </div>
+</div>

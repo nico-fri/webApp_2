@@ -1,0 +1,55 @@
+@import "variables";
+
+.card-wrapper {
+  padding-top: 1rem;
+  min-width: 225px;
+}
+.content-wrapper {
+  margin: 0 1rem;
+}
+.card {
+  transition: 0.3s;
+  margin: 1rem 1rem 0 0;
+}
+.card-table-wrapper {
+  h3 {
+    padding: 1rem 0 0 1rem;
+  }
+}
+
+.key-figures:hover,
+.key-figures:active {
+  transform: translateY(-2px);
+  color: $primary;
+}
+.key-figures-menu {
+  padding: 0 2rem;
+}
+.information-text {
+  padding: 0 1rem;
+}
+
+.product-img {
+  margin: 2rem 0 0 0;
+}
+
+.empty-data {
+  img {
+    height: 17rem;
+    padding: 2rem 3rem;
+  }
+}
+
+.register-dialog {
+  padding: 1rem;
+}
+
+.status-error {
+  color: #de202d;
+}
+.status-okay {
+  color: #35ae88;
+}
+.status-warning {
+  color: #eeab2f;
+}

@@ -1,0 +1,85 @@
+<div class="wrapper">
+        <div class="navbar" fxLayout="row" fxLayoutAlign="space-between center">
+                <div>
+                        <h6 class="secondary">WEB APP</h6>
+                        <h2>{{route}}</h2>
+                </div>
+                <div fxLayout="row">
+                        <div>
+                                <mat-menu #notificationMenu="matMenu">
+                                        <div *ngIf="counter >= 1">
+                                                <div *ngFor="let notification of notifications">
+                                                        <div class="notification-btn" fxAlign="row"
+                                                                fxLayoutAlign="center center">
+                                                                <mat-icon color="primary" fxFlex="20">
+                                                                        {{ notification.icon }}</mat-icon>
+                                                                        <div fxFlex="80" fxAlign="column">
+                                                                                <p >{{ notification.message }}</p>
+                                                                                <button *ngIf="notification.message == 'Achtung: Pumpmotor könnte ausfallen'" mat-button color="primary"
+                                                                        routerLink="/order">Beauftragen</button>
+                                                                        </div>
+
+                                                        </div>
+                                                                
+                                                                
+
+
+                                                </div>
+                                                <div fxLayoutAlign="center center">
+                                                        <button mat-button color="primary"
+                                                                (click)="clearNotification()">
+                                                                Benachrichtigungen löschen
+                                                        </button>
+                                                </div>
+
+                                        </div>
+                                        <div *ngIf="counter == null || counter == 0" class="empty-messages"
+                                                fxLayoutAlign="center center" fxLayout="column">
+                                                <img src="./../../../assets/alarm.svg">
+                                                <p class="secondary">
+                                                        Keine Benachrichtigungen
+                                                </p>
+                                                <button mat-button color="primary">
+                                                        Alles klar
+                                                </button>
+                                        </div>
+
+
+                                </mat-menu>
+
+                                <button mat-icon-button matTooltip="Benachrichtigungen" [matMenuTriggerFor]="notificationMenu">
+                                        <mat-icon matBadge="{{ counter }}" matBadgeColor="warn">notifications_none
+                                        </mat-icon>
+                                </button>
+                        </div>
+                        <div>
+                                <mat-menu #moreMenu="matMenu">
+                                        <button mat-menu-item  (click)="doUserStoryTwo()">
+                                                <mat-icon>start</mat-icon>User Story 2 ausführen
+                                        </button>
+
+                                        <!-- <mat-slide-toggle [(ngModel)]="darkMode" (change)="setDarkMode($event)" color="primary">Dark Mode</mat-slide-toggle> -->
+                                        <button mat-menu-item (click)="doUserStoryThree()">
+                                                <mat-icon>start</mat-icon>User Story 3 ausführen
+                                        </button>
+                                </mat-menu>
+
+                                <button mat-icon-button matTooltip="User Story Optionen" [matMenuTriggerFor]="moreMenu">
+                                        <mat-icon>more_vert</mat-icon>
+                                </button>
+                        </div>
+                        <div>
+                                <mat-menu #appMenu="matMenu">
+                                        <button mat-menu-item  (click)="userLogout()">
+                                                <mat-icon>logout</mat-icon>Abmelden
+                                        </button>
+                                </mat-menu>
+
+                                <button mat-icon-button matTooltip="Benutzer" [matMenuTriggerFor]="appMenu">
+                                        <mat-icon>person_outlined</mat-icon>
+                                </button>
+                        </div>
+                </div>
+        </div>
+
+</div>
