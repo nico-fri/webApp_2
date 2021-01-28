@@ -12,8 +12,6 @@
     <img class="login-logo" src="../../assets/logo.svg" alt="..." />
     <h2 class="font-weight-bold">Registrieren</h2>
 
-    <mat-tab-group>
-      <mat-tab label="Kunde">
         <form
           [formGroup]="registerForm"
           (ngSubmit)="onSubmit()"
@@ -72,68 +70,6 @@
             <a class="secondary" routerLink="/login">Anmelden</a>
           </div>
         </form>
-      </mat-tab>
-      <mat-tab label="Dienstleister">
-        <form
-          [formGroup]="registerForm"
-          (ngSubmit)="onSubmit()"
-          class="login-form"
-          fxLayout="column"
-        >
-          <mat-form-field>
-            <input
-              matInput
-              placeholder="E-Mail Adresse"
-              formControlName="email"
-            />
-            <mat-error *ngIf="registerForm.value.email.invalid">{{
-              getErrorMessage()
-            }}</mat-error>
-          </mat-form-field>
-          <mat-form-field>
-            <input
-              matInput
-              placeholder="Passwort eingeben"
-              formControlName="password"
-              [type]="hide ? 'password' : 'text'"
-            />
-            <button
-              mat-icon-button
-              matSuffix
-              (click)="hide = !hide"
-              [attr.aria-label]="'Hide password'"
-              [attr.aria-pressed]="hide"
-            >
-              <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
-            </button>
-          </mat-form-field>
-          <mat-form-field>
-            <input
-              matInput
-              placeholder="Passwort bestätigen"
-              formControlName="passwordconfirm"
-              [type]="hide ? 'password' : 'text'"
-            />
-            <button
-              mat-icon-button
-              matSuffix
-              (click)="hide = !hide"
-              [attr.aria-label]="'Hide password'"
-              [attr.aria-pressed]="hide"
-            >
-              <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
-            </button>
-          </mat-form-field>
-          <button type="submit" color="primary" mat-flat-button>
-            Registrieren
-          </button>
-          <div fxLayout="row" fxLayoutAlign="space-between center">
-            <p class="secondary">Bereits registriert?</p>
-            <a class="secondary" routerLink="/login">Anmelden</a>
-          </div>
-        </form>
-      </mat-tab>
-    </mat-tab-group>
   </div>
   <div
     class="login-info"
@@ -147,7 +83,7 @@
       <img src="../../assets/jumbo.png" alt="..." />
     </div>
     <div class="text" fxLayout="column" fxLayoutAlign="center start">
-      <h1 class="aco-cluster aco-cluster-one">ACO. creating</h1>
+      <h1 class="aco-cluster aco-cluster-one">SBP. Creating</h1>
       <h1 class="aco-cluster aco-cluster-two">the future of monitoring</h1>
     </div>
   </div>
